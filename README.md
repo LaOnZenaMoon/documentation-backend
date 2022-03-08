@@ -1,6 +1,5 @@
 ## documentation-backend
 * Deal with backend server applications related to API documentation
-* Spring REST Docs
 
 ## Project structure
 
