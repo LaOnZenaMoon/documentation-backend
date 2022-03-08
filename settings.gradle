@@ -1,0 +1,3 @@
+include 'core'
+include 'domain'
+include 'auth-service'
