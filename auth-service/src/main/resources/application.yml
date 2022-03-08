@@ -1,5 +1,5 @@
 server:
-  port: 0 # random port
+  port: 8080 # random port
 
 spring:
   application:
@@ -18,17 +18,16 @@ spring:
           batch_size: 100
           order_inserts: true
 
-eureka:
-  instance:
-    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://127.0.0.1:8761/eureka
-
 management:
   endpoints:
     web:
       exposure:
         include: refresh, health, beans, info
+
+# default URL: http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
+springdoc:
+  swagger-ui:
+    urls:
+      - name: v1.0.0
+        url: /docs/openapi3.yaml
+    disable-swagger-default-url: true

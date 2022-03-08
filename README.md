@@ -1,5 +1,6 @@
 ## documentation-backend
 * Deal with backend server applications related to API documentation
+* Spring REST Docs(Test code) -> Open API Spec 3(yaml) -> Swagger UI 
 
 ## Project structure
 
@@ -19,3 +20,4 @@
 * Documentation
   * Spring REST Docs
   * Swagger
+  * openapi3

@@ -8,6 +8,7 @@ import org.springdoc.core.GroupedOpenApi;
 import org.springdoc.core.customizers.OpenApiCustomiser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class SwaggerConfig {
@@ -16,8 +17,7 @@ public class SwaggerConfig {
     public OpenAPI openApi() {
         return new OpenAPI().info(
                 new Info().title("Auth Service Swagger")
-                        .description("ecommerce-backend > auth service > REST API Document")
-        );
+                        .description("ecommerce-backend > auth service > REST API Document"));
     }
 
     @Bean
@@ -40,7 +40,8 @@ public class SwaggerConfig {
 
         return OpenApi -> OpenApi
                 .addSecurityItem(new SecurityRequirement().addList("jwt token"))
-                .getComponents().addSecuritySchemes("jwt token", securityScheme);
+                .getComponents()
+                .addSecuritySchemes("jwt token", securityScheme);
     }
 
 }

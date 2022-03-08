@@ -1,0 +1,9 @@
+docker run --rm -p 80:8080 \
+-v /Users/1004757/lozm/git/personal/documentation-backend/auth-service/src/main/resources/static/docs/:/usr/share/nginx/html/docs/ \
+-e URLS="[{url: 'http://localhost:8080/docs/openapi3.yaml', name: 'user'}]" \
+swaggerapi/swagger-ui
+
+docker run --rm -p 80:8080 \
+-v /Users/1004757/lozm/git/personal/documentation-backend/auth-service/src/main/resources/static/docs/:/usr/share/nginx/html/docs/ \
+-e URL=docs/openapi3.yaml \
+swaggerapi/swagger-ui

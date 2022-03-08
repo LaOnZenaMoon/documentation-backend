@@ -1,5 +1,6 @@
 package me.lozm.api.controller;
 
+import com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.lozm.api.global.restDocs.RestDocsConfiguration;
 import me.lozm.api.service.UserService;
@@ -25,7 +26,6 @@ import java.util.List;
 
 import static me.lozm.api.global.restDocs.ApiDocumentUtils.getDocumentRequest;
 import static me.lozm.api.global.restDocs.ApiDocumentUtils.getDocumentResponse;
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
@@ -67,7 +67,7 @@ class UserControllerTest {
         //Then
         result.andExpect(status().is(200))
                 .andDo(print())
-                .andDo(document("get-user-detail",
+                .andDo(MockMvcRestDocumentationWrapper.document("get-user-detail",
                         getDocumentRequest(),
                         getDocumentResponse(),
                         pathParameters(
