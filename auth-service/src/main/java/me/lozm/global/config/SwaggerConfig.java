@@ -17,7 +17,7 @@ public class SwaggerConfig {
     public OpenAPI openApi() {
         return new OpenAPI().info(
                 new Info().title("Auth Service Swagger")
-                        .description("ecommerce-backend > auth service > REST API Document"));
+                        .description("documentation-backend > auth service > REST API Document"));
     }
 
     @Bean

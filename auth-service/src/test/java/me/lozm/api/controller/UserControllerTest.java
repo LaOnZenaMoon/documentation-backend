@@ -66,7 +66,6 @@ class UserControllerTest {
 
         //Then
         result.andExpect(status().is(200))
-                .andDo(print())
                 .andDo(MockMvcRestDocumentationWrapper.document("get-user-detail",
                         getDocumentRequest(),
                         getDocumentResponse(),
