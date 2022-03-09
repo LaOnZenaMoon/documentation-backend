@@ -24,13 +24,10 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.List;
 
-import static me.lozm.api.global.restDocs.ApiDocumentUtils.getDocumentRequest;
-import static me.lozm.api.global.restDocs.ApiDocumentUtils.getDocumentResponse;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -66,9 +63,7 @@ class UserControllerTest {
 
         //Then
         result.andExpect(status().is(200))
-                .andDo(MockMvcRestDocumentationWrapper.document("get-user-detail",
-                        getDocumentRequest(),
-                        getDocumentResponse(),
+                .andDo(MockMvcRestDocumentationWrapper.document("auths-get-user-detail", "사용자 상세 조회",
                         pathParameters(
                                 parameterWithName("userId").description("사용자 ID")
                         ),

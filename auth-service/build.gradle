@@ -35,10 +35,11 @@ dependencies {
 
 openapi3 {
     server = 'http://localhost:8080'
-    title = 'api test'
-    description = 'test'
+    title = 'documentation-backend Swagger'
+    description = 'documentation-backend API 정의서'
     version = '1.0.0'
     format = 'yaml'
+    tagDescriptionsPropertiesFile = 'src/main/resources/static/docs/tags.yaml'
 
     copy {
         from 'build/api-spec'

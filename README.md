@@ -20,4 +20,4 @@
 * Documentation
   * Spring REST Docs
   * Swagger
-  * openapi3
+  * [restdocs-api-spec](https://github.com/ePages-de/restdocs-api-spec#gradle-plugin-configuration)

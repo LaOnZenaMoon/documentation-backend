@@ -13,35 +13,35 @@ import org.springframework.context.annotation.Primary;
 @Configuration
 public class SwaggerConfig {
 
-    @Bean
-    public OpenAPI openApi() {
-        return new OpenAPI().info(
-                new Info().title("Auth Service Swagger")
-                        .description("documentation-backend > auth service > REST API Document"));
-    }
-
-    @Bean
-    public GroupedOpenApi apiV1() {
-        return GroupedOpenApi.builder()
-                .group("api-version-1")
-                .pathsToMatch("/**")
-                .pathsToExclude("/test/**")
-                .addOpenApiCustomiser(buildSecurityOpenApi())
-                .build();
-    }
-
-    private OpenApiCustomiser buildSecurityOpenApi() {
-        SecurityScheme securityScheme = new SecurityScheme()
-                .name("Authorization")
-                .type(SecurityScheme.Type.HTTP)
-                .in(SecurityScheme.In.HEADER)
-                .bearerFormat("JWT")
-                .scheme("bearer");
-
-        return OpenApi -> OpenApi
-                .addSecurityItem(new SecurityRequirement().addList("jwt token"))
-                .getComponents()
-                .addSecuritySchemes("jwt token", securityScheme);
-    }
+//    @Bean
+//    public OpenAPI openApi() {
+//        return new OpenAPI().info(
+//                new Info().title("Auth Service Swagger")
+//                        .description("documentation-backend > auth service > REST API Document"));
+//    }
+//
+//    @Bean
+//    public GroupedOpenApi apiV1() {
+//        return GroupedOpenApi.builder()
+//                .group("api-version-1")
+//                .pathsToMatch("/**")
+//                .pathsToExclude("/test/**")
+//                .addOpenApiCustomiser(buildSecurityOpenApi())
+//                .build();
+//    }
+//
+//    private OpenApiCustomiser buildSecurityOpenApi() {
+//        SecurityScheme securityScheme = new SecurityScheme()
+//                .name("Authorization")
+//                .type(SecurityScheme.Type.HTTP)
+//                .in(SecurityScheme.In.HEADER)
+//                .bearerFormat("JWT")
+//                .scheme("bearer");
+//
+//        return OpenApi -> OpenApi
+//                .addSecurityItem(new SecurityRequirement().addList("jwt token"))
+//                .getComponents()
+//                .addSecuritySchemes("jwt token", securityScheme);
+//    }
 
 }
