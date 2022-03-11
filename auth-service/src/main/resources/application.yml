@@ -24,10 +24,16 @@ management:
       exposure:
         include: refresh, health, beans, info
 
+jwt-token:
+  expiration-time: 86400000 # 1 day
+  secret-key: AQAAsniVjB5Yylrfg7CbMdaX
+
 # default URL: http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
 springdoc:
   swagger-ui:
     urls:
       - name: v1.0.0
         url: /docs/openapi3.yaml
-    disable-swagger-default-url: true
+#    disable-swagger-default-url: true
+
+

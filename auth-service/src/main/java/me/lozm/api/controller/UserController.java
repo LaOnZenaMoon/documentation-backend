@@ -11,14 +11,17 @@ import me.lozm.user.dto.UserCreateResponseDto;
 import me.lozm.user.dto.UserInfoResponseDto;
 import me.lozm.user.vo.UserCreateVo;
 import me.lozm.user.vo.UserInfoVo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 import static java.util.stream.Collectors.toList;
 import static me.lozm.utils.MapperUtils.mapStrictly;
@@ -57,13 +60,27 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserCreateResponseDto> createUser(@RequestBody @Validated UserCreateRequestDto requestDto) {
+    public ResponseEntity<UserCreateResponseDto> createUser(@RequestHeader Map<String, Object> requestHeader,
+            @RequestBody @Validated UserCreateRequestDto requestDto) {
+
+        validateJwt(requestHeader);
+
         UserCreateVo userCreateVo = mapStrictly(requestDto, UserCreateVo.class);
         UserCreateVo responseUserCreateVo = userService.createUser(userCreateVo);
 
         UserCreateResponseDto userCreateResponseDto = mapStrictly(responseUserCreateVo, UserCreateResponseDto.class);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userCreateResponseDto);
+    }
+
+
+    private void validateJwt(Map<String, Object> requestHeader) {
+        String authorization = (String) requestHeader.get(HttpHeaders.AUTHORIZATION);
+        authorization = StringUtils.isEmpty(authorization) ? (String) requestHeader.get(HttpHeaders.AUTHORIZATION.toLowerCase()) : authorization;
+
+        if (StringUtils.isEmpty(authorization)) {
+            throw new IllegalArgumentException();
+        }
     }
 
 }

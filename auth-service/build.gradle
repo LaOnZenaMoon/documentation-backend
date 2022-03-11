@@ -30,7 +30,7 @@ dependencies {
     // Spring REST Docs
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
     testImplementation 'com.epages:restdocs-api-spec-mockmvc:0.16.0'
-
+    testImplementation 'com.epages:restdocs-api-spec-openapi3-generator:0.16.0'
 }
 
 openapi3 {
@@ -39,7 +39,11 @@ openapi3 {
     description = 'documentation-backend API 정의서'
     version = '1.0.0'
     format = 'yaml'
-    tagDescriptionsPropertiesFile = 'src/main/resources/static/docs/tags.yaml'
+    tagDescriptionsPropertiesFile = 'src/main/resources/static/docs/openapi3-tags.yaml'
+
+//    oauth2SecuritySchemeDefinition = {
+//        scopeDescriptionsPropertiesFile = 'src/main/resources/static/docs/openapi3-security.yaml'
+//    }
 
     copy {
         from 'build/api-spec'
