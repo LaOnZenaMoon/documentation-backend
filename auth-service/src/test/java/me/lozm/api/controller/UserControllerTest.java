@@ -55,16 +55,14 @@ class UserControllerTest {
 
 
     @Test
-    void getUserDetailTest() throws Exception {
+    void getUserDetailTestSuccess() throws Exception {
         //Given
-
         Mockito.when(userService.getUserDetail(Mockito.any()))
                 .thenReturn(UserInfoVo.of(USER_ID, "laonzenamoon@gmail.com", "junlee", List.of()));
 
         //When
         ResultActions result = mockMvc.perform(
                 RestDocumentationRequestBuilders.get("/users/{userId}", USER_ID)
-                        .accept(MediaType.APPLICATION_JSON)
         );
 
         //Then
@@ -78,6 +76,28 @@ class UserControllerTest {
                                 fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
                                 fieldWithPath("name").type(JsonFieldType.STRING).description("이름"),
                                 fieldWithPath("orders[]").type(JsonFieldType.ARRAY).description("주문 목록")
+                        )
+                ));
+    }
+
+    @Test
+    void getUserDetailTestBadRequest() throws Exception {
+        //Given
+
+        //When
+        ResultActions result = mockMvc.perform(
+                RestDocumentationRequestBuilders.get("/users/{userId}", USER_ID)
+        );
+
+        //Then
+        result.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
+                .andDo(MockMvcRestDocumentationWrapper.document("get-user-detail-error", "사용자 상세 조회",
+                        pathParameters(
+                                parameterWithName("userId").description("사용자 ID")
+                        ),
+                        responseFields(
+                                fieldWithPath("code").type(JsonFieldType.STRING).description("에러 코드"),
+                                fieldWithPath("message").type(JsonFieldType.STRING).description("에러 메세지")
                         )
                 ));
     }
